@@ -1,0 +1,54 @@
+* {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 15px;
+  color: rgb(46, 46, 46);
+}
+
+body {
+  margin: 50px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+li {
+  list-style-type: none;
+}
+
+li:hover button {
+  color: rgba(15, 15, 15, 0.2);
+}
+
+button {
+  color: white;
+  font-size: 20px;
+  padding: 1px 3px;
+  border-style: none;
+  background-color: transparent;
+}
+
+button:hover {
+  background-color: rgba(15, 15, 15, 0.1);
+  color: rgba(15, 15, 15, 0.2);
+}
+
+#add,
+.hovered {
+  background-color: rgba(15, 15, 15, 0.1);
+  color: black;
+}
+
+[type="checkbox"] {
+  outline: 1.5px solid rgb(69, 69, 69);
+}
+
+.crossed [type="text"] {
+  text-decoration: line-through;
+  color: rgb(69, 69, 69);
+}
+
+input {
+  border-style: none;
+  background-color: transparent;
+}
