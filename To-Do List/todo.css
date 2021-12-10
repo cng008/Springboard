@@ -16,8 +16,8 @@ li {
   list-style-type: none;
 }
 
-li:hover button {
-  color: rgba(15, 15, 15, 0.2);
+li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 button {
@@ -29,12 +29,11 @@ button {
 }
 
 button:hover {
-  background-color: rgba(15, 15, 15, 0.1);
-  color: rgba(15, 15, 15, 0.2);
+  /* background-color: rgba(15, 15, 15, 0.1); */
+  color: rgba(15, 15, 15, 0.3);
 }
 
-#add,
-.hovered {
+[type="submit"] {
   background-color: rgba(15, 15, 15, 0.1);
   color: black;
 }

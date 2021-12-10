@@ -2,28 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="todo.css" />
     <title>Notion Clone</title>
   </head>
   <body>
-    <h1>To Do List <button id="add">&#43;</button></h1>
+    <h1>To Do List</h1>
+    <!-- <button id="add">&#43;</button> -->
 
-    <form action id="toDo">
-      <ul id="toDoList">
-        <!-- &#10303; src='https://www.htmlsymbols.xyz/unicode/U+283F' -->
-        <!-- &#43; src='https://www.htmlsymbols.xyz/unicode/U+002B' -->
-        <li>
-          <button id="addUnder">&#43;</button>
-          <button id="edit">&#10303;</button>
-          <input type="checkbox" />
-          <input type="text" placeholder="Add something to do!" />
-        </li>
-      </ul>
+    <form action="#" id="toDoForm">
+      <button type="submit" id="addUnder">+</button>
+      <!-- <button id="edit">x</button> -->
+      <!-- <input type="checkbox" /> -->
+      <input type="text" id="text" placeholder="Add something to do!" />
     </form>
-
-    <section id="addItem"></section>
+    <ul id="entry"></ul>
     <script src="todo.js"></script>
   </body>
 </html>
