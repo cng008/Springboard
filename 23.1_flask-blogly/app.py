@@ -26,7 +26,7 @@ def show_list():
 @app.route('/users')
 def list_users():
     """Show all users."""
-    users = User.query.all()
+    users = User.query.order_by(User.last_name, User.first_name).all()
     return render_template('list.html', users=users)
 
 
@@ -39,16 +39,16 @@ def create_user():
 @app.route('/users/new', methods=["POST"])
 def add_user():
     """Process the add form, adding a new user and going back to /users"""
-    first = request.form["first"]
-    last = request.form["last"]
-    image = request.form["image"]
 
-    new_user = User(first_name=first, last_name=last, image_url=image)
+    new_user = User(
+        first_name=request.form["first"], 
+        last_name=request.form["last"], 
+        image_url=request.form["image"] or None)
+
     db.session.add(new_user)
     db.session.commit()
 
     flash("User has been created")
-
     return redirect(f'/users/{new_user.id}')
 
 
@@ -69,14 +69,10 @@ def edit_user(user_id):
 @app.route('/users/<int:user_id>/edit', methods=["POST"])
 def submit_edits(user_id):
     """Process the edit form, returning the user to the /users page."""
-    first = request.form["first"]
-    last = request.form["last"]
-    image = request.form["image"]
-
     user = User.query.get_or_404(user_id)
-    user.first_name = first
-    user.last_name = last
-    user.image_url = image
+    user.first_name = request.form["first"]
+    user.last_name = request.form["last"]
+    user.image_url = request.form["image"]
 
     db.session.add(user)
     db.session.commit()
@@ -89,6 +85,9 @@ def submit_edits(user_id):
 def delete_user(user_id):
     """Delete the user."""
     User.query.filter_by(id=user_id).delete()
+    # user = User.query.get_or_404(user_id)
+    # db.session.delete(user)
     db.session.commit()
+
     flash("User has been deleted")
     return redirect('/users')
