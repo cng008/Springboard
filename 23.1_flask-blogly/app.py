@@ -41,9 +41,9 @@ def add_user():
     """Process the add form, adding a new user and going back to /users"""
 
     new_user = User(
-        first_name=request.form["first"], 
-        last_name=request.form["last"], 
-        image_url=request.form["image"] or None)
+        first_name = request.form["first"], 
+        last_name = request.form["last"], 
+        image_url = request.form["image"] or None)
 
     db.session.add(new_user)
     db.session.commit()
