@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Edit Post{% endblock %}
+{% block content %}
+
+<h1 class="my-3">Edit Post</h1>
+
+<form action="/posts/{{ post.id }}/edit" method="POST" class="row">
+  <div class="col-12">
+    <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" maxlength="50" required>
+    </div>
+
+    <div class="col mt-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea class="form-control" id="content" name="content" rows="4" maxlength="400" required>{{ post.content }}</textarea>
+      <div class="form-text">Maximum of 400 characters</div>
+    </div>
+
+    <div class="col-12 mt-4">
+    <a class="btn btn-outline-danger btn-sm" href="/posts/{{ post.id }}" role="button">Cancel</a>
+    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+  </div>
+</form>
+
+{% endblock %}

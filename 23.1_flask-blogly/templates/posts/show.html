@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{post.title}} by {{post.user.full_name}}{% endblock %}
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<em>By {{ post.user.full_name }} on <span class="text-secondary">{{ post.friendly_date }}</span></em>
+
+<form action="/posts/{{ post.id }}/delete" method="POST" class="mt-3">
+    <a class="btn btn-outline-primary btn-sm" href="/users/{{ post.user_id }}" role="button">Back to profile</a>
+    <a class="btn btn-primary btn-sm" href="/posts/{{ post.id }}/edit" role="button">Edit</a>
+    <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+</form>
+
+{% endblock %}

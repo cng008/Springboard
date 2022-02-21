@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.full_name }}{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-3">
+        <img src="{{ user.image_url }}" class="img-thumbnail" alt="profile picture">
+    </div>
+
+    <div class="col">
+        <h1>{{ user.full_name }}</h1>
+        <form action="/users/{{ user.id }}/delete" method="POST">
+            <a class="btn btn-primary btn-sm" href="/users/{{ user.id }}/edit" role="button">Edit</a>
+            <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+        </form>
+
+        <div class="mt-5">
+            <h3>Posts</h3>
+            <ul>
+                {% if posts %}
+                    {% for post in posts %}
+                        <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <p>This user has no posts!</p>
+                {% endif %}
+            </ul>
+        </div>
+
+        <a class="btn btn-primary" href="/users/{{ user.id }}/posts/new" role="button">Add Post</a>
+    </div>
+</div>
+
+<a class="btn btn-outline-secondary btn-sm mt-5" href="/users" role="button">Back to all users</a>
+{% endblock %}
