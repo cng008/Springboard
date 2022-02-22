@@ -10,8 +10,21 @@
     <title>{% block title %}TITLE GOES HERE{% endblock %}</title>
 </head>
 <body>
-    <div class="container">
-        <!-- alert when user has been added/deleted/info edited -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark mt-0">
+        <a class="navbar-brand mx-4" href="/">Blogly</a>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Posts</a></li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="btn btn-outline-warning btn-sm" href="/users/new">Add user</a>
+          </li>
+        </ul>
+      </nav>
+      
+    <div class="container mt-4">
+        <!-- alert when user/post has been added/deleted/info edited -->
         {% with messages = get_flashed_messages() %}
         {% for msg in messages %}
             <div class="alert alert-success" role="alert">

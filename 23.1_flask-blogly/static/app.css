@@ -1,7 +1,6 @@
 /* from https://www.bootdey.com/snippets/view/bs4-beta-comment-list#css */
 
 body {
-  margin-top: 20px;
   background: #eee;
 }
 @media (min-width: 0) {

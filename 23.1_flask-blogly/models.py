@@ -14,7 +14,7 @@ DEFAULT_IMG_URL = 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-a
 class User(db.Model):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50),nullable=False)
     last_name = db.Column(db.String(50),nullable=False)
     image_url = db.Column(db.String, nullable=False, default='https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png')
@@ -35,7 +35,7 @@ class User(db.Model):
 class Post(db.Model):
     __tablename__ = 'posts'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50),nullable=False)
     content = db.Column(db.String(400),nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)

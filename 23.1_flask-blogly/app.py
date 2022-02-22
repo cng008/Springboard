@@ -19,8 +19,9 @@ db.create_all()
 
 @app.route('/')
 def show_list():
-    """Redirect to list of users."""
-    return redirect('/users')
+    """Show recent list of posts, most-recent first."""
+    posts = Post.query.order_by(Post.created_at.desc()).limit(5).all()
+    return render_template("posts/homepage.html", posts=posts)
 
 
 @app.errorhandler(404)
