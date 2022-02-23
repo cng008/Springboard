@@ -17,7 +17,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50),nullable=False)
     last_name = db.Column(db.String(50),nullable=False)
-    image_url = db.Column(db.String, nullable=False, default='https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png')
+    image_url = db.Column(db.String, nullable=False, default=DEFAULT_IMG_URL)
    
     # Sets up a user attribute on each instance of Post.
     # SQLA will populate it with data from the users table automatically
@@ -48,3 +48,22 @@ class Post(db.Model):
     def friendly_date(self):
         """Return nicely-formatted date."""
         return self.created_at.strftime("%b %-d,  %Y @ %-I:%M %p")
+
+class Tag(db.Model):
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, unique=True, nullable=False)
+
+    post = db.relationship('Post', secondary='post_tags', cascade="all,delete", backref='tag')
+    
+    def __repr__(self):
+        return f"<Tag id={self.id} name={self.name}>"
+
+class PostTag(db.Model):
+    __tablename__ = 'post_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
+    # buffer = db.Column(db.Text)
+    

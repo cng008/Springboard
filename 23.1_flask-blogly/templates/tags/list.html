@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Blogly Tags{% endblock %}
+{% block content %}
+
+{% if tags %}
+<h1>Tags</h1>
+<div class="row" style="list-style-type: none;">
+  {% for tag in tags %}
+  <div class="col-4"> 
+    <a href="/tags/{{ tag.id }}" class="list-group-item-action text-primary">#{{ tag.name }}</a>
+  </div>
+  {% endfor %}
+</div>
+<a class="btn btn-primary mt-4" href="/tags/new" role="button">Add Tag</a>
+{% else %}
+<h1>There are no tags yet!</h1>
+{% endif %}
+
+{% endblock %}

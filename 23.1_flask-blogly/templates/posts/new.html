@@ -10,10 +10,20 @@
       <input type="text" class="form-control" id="title" name="title" maxlength="50" required>
     </div>
 
-    <div class="col mt-3">
+    <div class="col-12 mt-3">
       <label for="content" class="form-label">Content</label>
       <textarea class="form-control" id="content" name="content" rows="4" placeholder="What's up?" maxlength="400" required></textarea>
-      <div class="form-text">Maximum of 400 characters</div>
+      <small class="form-text">Maximum of 400 characters</small>
+    </div>
+
+    <div class="col-12 mt-3">
+      <small class="font-weight-bold">Select tags to add post to:</small>
+      {% for tag in tags %}
+      <div>
+        <input class="form-input" type="checkbox" name="tags" id="tag_{{ tag.id }}" value="{{ tag.id }}">
+        <label class="form-check-label" for="tag_{{ tag.id }}"><i>{{ tag.name }}</i></label>
+      </div>
+      {% endfor %}
     </div>
 
     <div class="col-12 mt-4">

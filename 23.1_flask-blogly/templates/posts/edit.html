@@ -2,20 +2,30 @@
 {% block title %}Edit Post{% endblock %}
 {% block content %}
 
-<h1 class="my-3">Edit Post</h1>
+<h1 class="my-3">Edit Post for {{ post.user.full_name }}</h1>
 
 <form action="/posts/{{ post.id }}/edit" method="POST" class="row">
   <div class="col-12">
     <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" maxlength="50" required>
+      <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" placeholder="Enter a title" maxlength="50" required>
     </div>
 
     <div class="col mt-3">
       <label for="content" class="form-label">Content</label>
-      <textarea class="form-control" id="content" name="content" rows="4" maxlength="400" required>{{ post.content }}</textarea>
+      <textarea class="form-control" id="content" name="content" rows="4" placeholder="Enter some content" maxlength="400" required>{{ post.content }}</textarea>
       <div class="form-text">Maximum of 400 characters</div>
     </div>
 
+    <div class="col-12 mt-3">
+      <small class="font-weight-bold">Select tags to add post to:</small>
+      {% for tag in tags %}
+      <div>
+        <input class="form-input" type="checkbox" name="tags" id="tag_{{ tag.id }}" value="{{ tag.id }}" {% if tag in post.tag %}checked{% endif %}>
+        <label class="form-check-label" for="tag_{{ tag.id }}"><i>{{ tag.name }}</i></label>
+      </div>
+      {% endfor %}
+    </div>
+  
     <div class="col-12 mt-4">
     <a class="btn btn-outline-danger btn-sm" href="/posts/{{ post.id }}" role="button">Cancel</a>
     <button type="submit" class="btn btn-success btn-sm">Submit</button>

@@ -19,7 +19,7 @@
             <ul>
                 {% if posts %}
                     {% for post in posts %}
-                        <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
+                        <li><a href="/posts/{{ post.id }}" class="text-decoration-none">{{ post.title }}</a></li>
                     {% endfor %}
                 {% else %}
                     <p>This user has no posts!</p>
