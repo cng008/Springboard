@@ -22,13 +22,9 @@
       
     <div class="container mt-4">
         <!-- alert when user/post has been added/deleted/info edited -->
-        {% with messages = get_flashed_messages() %}
-        {% for msg in messages %}
-            <div class="alert alert-success" role="alert">
-                {{msg}}
-            </div>
+        {% for msg in get_flashed_messages() %}
+            <div class="alert alert-success" role="alert">{{msg}}</div>
         {% endfor %}
-        {% endwith %}
         <!-- end alert -->
         <div>{% block content %}BODY CONTENT GOES HERE{% endblock %}</div>
       </div>

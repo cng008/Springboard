@@ -5,21 +5,21 @@
     <div class="row my-5">
 
         <div class="col-4">
-            <img class="img-thumbnail" src="{{pet.photo_url}}" alt="animal" style="width: 20rem;">
+            <img class="img-thumbnail" src="{{ pet.image_url() }}" alt="animal" style="width: 20rem;">
         </div>
 
         
         <div class="col">
-            <h1>{{pet.name}}</h1>
+            <h1>{{ pet.name }}</h1>
 
             <p>{{ pet.species }}</p>
 
             {% if pet.age %}
-            <p>Age: {{pet.age}}</p>
+            <p>Age: {{ pet.age }}</p>
             {% endif %}
 
             {% if pet.notes %}
-            <p>{{pet.notes}}</p>
+            <p>{{ pet.notes }}</p>
             {% endif %}
 
             {% if pet.available==True %}
@@ -33,24 +33,8 @@
 <h3>Edit Friend</h3>
 
 <form action="/{{ pet.id }}" method="POST">
-    {{ form.hidden_tag() }}
-
-    {% for field in form
-        if field.widget.input_type != 'hidden' %}
-        <p>
-            {{ field.label(class_="form-label")}}
-            {{ field(class_="form-control")}}
-
-            {% for error in field.errors %}
-            <small class="form-text text-danger">
-                {{ error }}
-            </small>
-            {% endfor %}
-        </p>
-    {% endfor %}
-    <div>
-        <button type="submit" class="btn btn-primary btn-sm mt-3">Update</button>
-    </div>
+    {% include "form.html" %}
+    <button type="submit" class="btn btn-primary btn-sm mt-3">Update</button>
 </form>
 
 {% endblock %}

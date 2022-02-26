@@ -7,10 +7,14 @@ from forms import AddPetForm, EditPetForm
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = "shhhhhh"
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///adopts'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']  =  False
-app.config['SQLALCHEMY_ECHO'] =  True
-app.config['SECRET_KEY'] = "shhhhhh"
+
+# Having the Debug Toolbar show redirects explicitly is often useful;
+# however, if you want to turn it off, you can uncomment this line:
+#
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
@@ -40,7 +44,9 @@ def add_pet():
         photo_url = form.photo_url.data
         age = form.age.data
         notes = form.notes.data
-
+        # data = {k: v for k, v in form.data.items() if k != "csrf_token"}
+        # new_pet = Pet(**data)
+            # new_pet = Pet(name=form.name.data, age=form.age.data, ...)
         new_pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes)
         db.session.add(new_pet)
         db.session.commit()
@@ -49,14 +55,15 @@ def add_pet():
         return redirect('/')
 
     else:
+        # re-present form for editing
         return render_template('new.html', form=form)
 
 
-@app.route('/<int:pet_id_number>', methods=["GET", "POST"])
-def edit_pet(pet_id_number):
+@app.route('/<int:pet_id>', methods=["GET", "POST"])
+def edit_pet(pet_id):
     """Edit pet form; handle adding."""
 
-    pet = Pet.query.get_or_404(pet_id_number)
+    pet = Pet.query.get_or_404(pet_id)
     form = EditPetForm(obj=pet)
 
     if form.validate_on_submit():
@@ -69,4 +76,4 @@ def edit_pet(pet_id_number):
         return redirect('/')
 
     else:
-        return render_template('edit.html', pet=pet, form=form)
+        return render_template('edit.html', form=form, pet=pet)

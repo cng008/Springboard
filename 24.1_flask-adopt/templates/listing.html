@@ -5,51 +5,24 @@
 <h1>Our Friends</h1>
 <div class="row mt-3">
 
-{% for pet in pets %}
-<div class="col-md-6 col-lg-5 col-xl-3">
-    <div class="card my-3">
-        <div class="card-body bg-light">
-        <img class="card-img-top" src="{{ pet.photo_url }}" style="height:20rem;object-fit:cover;"></img>
-        <h5 class="card-title mt-2">{{ pet.name }} is 
-            <small>{% if pet.available==True %}
-            <b class="text-success">Available</b>
-            {% else %}
-            <b class="text-warning">Not Available</b>
-            {% endif %}</small>
-        </h5>
-        <!-- <p class="card-text fs-5 fw-bold">{{ pet.notes }}</p> -->
-        <a href="/{{ pet.id }}" class="btn btn-primary btn-sm btn-block">See details</a>
+    {% for pet in pets %}
+    <div class="col-md-6 col-lg-5 col-xl-3">
+        <div class="card my-3">
+            <div class="card-body bg-light">
+            <img class="card-img-top" src="{{ pet.image_url() }}" style="height:20rem;object-fit:cover;"></img>
+            <h5 class="card-title mt-2">{{ pet.name }} is 
+                <small>{% if pet.available==True %}
+                <b class="text-success">Available</b>
+                {% else %}
+                <b class="text-warning">Not Available</b>
+                {% endif %}</small>
+            </h5>
+            <!-- <p class="card-text fs-5 fw-bold">{{ pet.notes }}</p> -->
+            <a href="/{{ pet.id }}" class="btn btn-primary btn-sm btn-block">See details</a>
+            </div>
         </div>
     </div>
-</div>
-
-<!-- <div class="row my-5">
-
-    <div class="col-4">
-        <img class="rounded-circle" src="{{ pet.photo_url }}" alt="pet"  style="width:300px;height:200px;object-fit:cover;">
-    </div>
-
-    <div class="col">
-        <h2>{{ pet.name }}</h2>
-
-        {% if pet.age %}
-        <p>Age: {{ pet.age }}</p>
-        {% endif %}
-
-        {% if pet.notes %}
-        <p>{{ pet.notes }}</p>
-        {% endif %}
-
-        {% if pet.available==True %}
-        <b class="text-success">Available</b>
-        {% else %}
-        <b class="text-warning">Not Available</b>
-        {% endif %}
-
-        <p><a href="/{{ pet.id }}">See Details</a></p>
-    </div>
-</div> -->
-{% endfor %}
+    {% endfor %}
 </div>
 
 {% endblock %}
