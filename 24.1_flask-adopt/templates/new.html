@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}New Friend{% endblock %}
+{% block content %}
+
+<h1>Add A Friend</h1>
+{% for pet in pets %}
+<div class="container">
+    <div class="row my-5">
+
+        <div class="col-6">
+            <img class="rounded-circle" src="{{pet.photo_url}}" alt="animal"  style="width:300px;height:200px;">
+        </div>
+
+        <div class="col">
+            <h2>{{pet.name}}</h2>
+
+            {% if pet.age %}
+            <p>Age: {{pet.age}}</p>
+            {% endif %}
+
+            {% if pet.notes %}
+            <p>{{pet.notes}}</p>
+            {% endif %}
+
+            {% if pet.available==True %}
+            <b>Available</b>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
