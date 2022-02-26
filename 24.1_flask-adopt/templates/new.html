@@ -3,32 +3,23 @@
 {% block content %}
 
 <h1>Add A Friend</h1>
-{% for pet in pets %}
-<div class="container">
-    <div class="row my-5">
 
-        <div class="col-6">
-            <img class="rounded-circle" src="{{pet.photo_url}}" alt="animal"  style="width:300px;height:200px;">
-        </div>
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
 
-        <div class="col">
-            <h2>{{pet.name}}</h2>
+    {% for field in form
+        if field.widget.input_type != 'hidden' %}
+        <p>
+            {{ field.label }}
+            {{ field }}
 
-            {% if pet.age %}
-            <p>Age: {{pet.age}}</p>
-            {% endif %}
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+        </p>
+    {% endfor %}
 
-            {% if pet.notes %}
-            <p>{{pet.notes}}</p>
-            {% endif %}
-
-            {% if pet.available==True %}
-            <b>Available</b>
-            {% endif %}
-        </div>
-
-    </div>
-</div>
-{% endfor %}
+    <button type="submit">Submit</button>
+</form>
 
 {% endblock %}
