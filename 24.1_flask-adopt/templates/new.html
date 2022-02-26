@@ -4,7 +4,7 @@
 
 <h1>Add A Friend</h1>
 
-<form action="" method="POST">
+<form method="POST">
     {{ form.hidden_tag() }}
 
     {% for field in form
@@ -19,7 +19,7 @@
         </p>
     {% endfor %}
 
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
 </form>
 
 {% endblock %}
